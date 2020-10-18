@@ -10,9 +10,13 @@
 
 #Pasos 
 1-check. Solucion al problema de las N-Queens
+
 2- TODO
+
 3- TODO
+
 4- check. Dockerizar solucion con docker compose
+
 5- TODO
 
 ##URL visitadas:
