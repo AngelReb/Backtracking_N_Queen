@@ -1,0 +1,23 @@
+##Docker compose para python y postgres
+#https://docs.docker.com/compose/django/
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: DB_POSTGRES
+    environment:
+      - POSTGRES_DB=coding_challenge
+      - POSTGRES_USER=angel
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    container_name: FLASK_N_REYNAS
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db

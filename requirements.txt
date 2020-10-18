@@ -1,0 +1,4 @@
+#Dependencias necesarias para el proyecto
+Flask==1.1.2
+SQLAlchemy==1.3.20
+psycopg2-binary>=2.8
