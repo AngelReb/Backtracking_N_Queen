@@ -1,6 +1,8 @@
 
-from flask import jsonify
+
 import json
+from app.models.models import NReynas
+from app.models.db import session
 class Backtracking:
 
     def __init__(self, n, r=[]):
@@ -128,19 +130,30 @@ class Backtracking:
         :return: void
 
         """
-        pass
-    def obtenerSolucion(self, cantidad:int, texto:str ):
+        n_reyna = NReynas(N=self.N, Soluciones=json.dumps(self.R))
+        session.add(n_reyna)
+
+    @staticmethod
+    def obtenerSolucion(cantidad:int):
         """
         Metodo encargado de obtener las soluciones de la base de datos dependiente de la 'cantidad' de reynas
         :param cantidad: Reynas a considerar
-        :return:json
+        :return:dict
         """
-        pass
+        soluciones = session.query(NReynas).filter_by(N=cantidad).first()
+        if soluciones is None:
+            msg = 'No existe registro previo para ('+str(cantidad)+'). '
+            msg += 'Consulte http://127.0.0.1:500/resolver/'+str(cantidad)
+            return {'msg': msg}
+        out = {"N": soluciones.N, "cantSolucion": len(soluciones.Soluciones), "soluciones": soluciones.Soluciones}
+
+        return out
+
     def print_solucion(self):
         """
          Imprime la solucion al problema dada una 'cantidad' de reynas en consola
 
          """
-        out = {"cantidad": self.N, "solucion": {}}
+        out = {"cantidad": self.N, "solucion": self.R}
 
         return out

@@ -30,3 +30,5 @@ https://hub.docker.com/_/postgres
 https://docs.docker.com/compose/django/
 
 
+#Configuracion de redes IPV4:
+https://docs.docker.com/compose/compose-file/compose-file-v2/#ipv4_address-ipv6_address

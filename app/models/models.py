@@ -7,6 +7,7 @@ from sqlalchemy import Integer
 from sqlalchemy import String, JSON
 from sqlalchemy import Sequence
 
+
 class NReynas(Base):
     """
         Modelo SolucionNReynas, encargada de resolver, insertar y obtener la solucion de la db
@@ -18,5 +19,12 @@ class NReynas(Base):
     N = Column(Integer, default=0)
     Soluciones = Column(JSON, default={})
 
-    def __init__(self, n):
-        self.N = n
+    #def __init__(self, n):
+    #    self.N = n
+
+
+
+
+
+def create_db():
+    Base.metadata.create_all(bind=engine)

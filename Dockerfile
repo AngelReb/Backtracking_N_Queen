@@ -19,7 +19,5 @@ COPY /app ./
 
 #Definimos nuestro servicio
 ENV FLASK_APP=/app/controllers/app.py
-
+#ENV DEBUG=1
 ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
-
-#CMD [ "python", "main_test.py" ]

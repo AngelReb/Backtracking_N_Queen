@@ -4,17 +4,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-engine = create_engine('postgresql://angel:postgres@0.0.0.0:5432/coding_challenge', echo=True)
+Session = sessionmaker()
+DATABASE_URI ='postgresql://angel:postgres@db/coding_challenge'
+engine = create_engine(DATABASE_URI, echo=True)
 #db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+Session.configure(bind=engine)
+
+session = Session(autocommit=False )
 
 Base = declarative_base()
 
-Session = sessionmaker()
-Session.configure(bind=engine)
 
-session = Session()
-
-
-def init_db():
-	Base.metadata.create_all(bind=engine)
 
