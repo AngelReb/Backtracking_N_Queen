@@ -57,6 +57,7 @@ https://hub.docker.com/_/python
 https://hub.docker.com/_/postgres
 
 ####Docker compose para python y postgres
+######(Omitir que es para django xD)
 https://docs.docker.com/compose/django/
 
 ###SQLAlchemy Crear sesiones y conectar con la base de datos

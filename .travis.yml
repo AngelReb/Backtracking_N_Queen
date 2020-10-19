@@ -1,0 +1,10 @@
+#Documentacion oficial de Travis
+#https://docs.travis-ci.com/
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+script:
+  - pytest
+
