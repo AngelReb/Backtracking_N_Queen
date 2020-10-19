@@ -27,7 +27,7 @@ def obtener_solucion(cantidad:int):
     soluciones = session.query(NReynas).filter_by(N=cantidad).first()
     if soluciones is None:
         msg = 'No existe registro previo para ('+str(cantidad)+'). '
-        msg += 'Consulte http://127.0.0.1:500/resolver/'+str(cantidad)
+        msg += 'Consulte http://127.0.0.1:5000/resolver/'+str(cantidad)
         return {'msg': msg}
     out = {"N": soluciones.N, "cantSolucion": soluciones.N_soluciones, "soluciones": soluciones.Soluciones}
 
