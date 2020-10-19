@@ -1,29 +1,29 @@
-#Cuenca-Coding_challenge Luis Angel Reyes Bautista
+# Cuenca-Coding_challenge Luis Angel Reyes Bautista
 
-##Requerimientos
+## Requerimientos
 Tener Docker y Docker compose instalados
 
-##Para levantar el proyecto, ejecute los siguientes comandos
+## Para levantar el proyecto, ejecute los siguientes comandos
 > docker-compose build 
 >
 > docker-compose up
  
 
-##Consumir el servicio 
+## Consumir el servicio 
 
-###Calcular solucion al problemas de las N-Reynas
+### Calcular solucion al problemas de las N-Reynas
 > http://127.0.0.1:5000/resolver/4
 >
 > http://127.0.0.1:5000/resolver/8
 
-###Obtener solucion desde la base de datos
+### Obtener solucion desde la base de datos
 > http://127.0.0.1:5000/solucion_guardada/8
 
-###Eliminar registro previo en la base de datos dado 'N'
+### Eliminar registro previo en la base de datos dado 'N'
 > http://127.0.0.1:5000/delete/8
 
 
-##To-dos 
+## To-dos 
 1- *check*
 
     Determine all possible solutions for a given N where N ≥ 8 (within 10 mins on a laptop). 
@@ -44,39 +44,39 @@ Tener Docker y Docker compose instalados
 
     Setup Travis CI (or similar) for your public GitHub repo to run the tests automatically
 
-##Algunos link de referencia
+## Algunos link de referencia
 
-###Doc oficial de Docker y Docker compose
+### Doc oficial de Docker y Docker compose
 https://docs.docker.com/
 
 https://docs.docker.com/compose
 
-###Imagen python
+### Imagen python
 https://hub.docker.com/_/python
 
-###Imagen postgres
+### Imagen postgres
 https://hub.docker.com/_/postgres
 
-####Docker compose para python y postgres
-######(Omitir que es para django xD)
+#### Docker compose para python y postgres
+###### (Omitir que es para django xD)
 https://docs.docker.com/compose/django/
 
-###SQLAlchemy Crear sesiones y conectar con la base de datos
+### SQLAlchemy Crear sesiones y conectar con la base de datos
 https://docs.sqlalchemy.org/en/13/orm/tutorial.html
 
 http://zetcode.com/db/sqlalchemy/
 
-###Env Configuracion de env.files en docker compose
+### Env Configuracion de env.files en docker compose
 https://docs.docker.com/compose/compose-file/#env_file
 
-###Flask Doc oficial
+### Flask Doc oficial
 https://flask.palletsprojects.com/en/1.1.x/ 
 
-###Pytest con flask
+### Pytest con flask
 https://pypi.org/project/pytest-flask/
 
-###Travis
+### Travis
 https://docs.travis-ci.com/
 
-###Configuracion de redes IPV4:
+### Configuracion de redes IPV4:
 https://docs.docker.com/compose/compose-file/compose-file-v2/#ipv4_address-ipv6_address
