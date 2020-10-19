@@ -1,6 +1,6 @@
 ##Docker compose para python y postgres
 #https://docs.docker.com/compose/django/
-version: "3"
+version: "3.8"
 
 services:
   db:

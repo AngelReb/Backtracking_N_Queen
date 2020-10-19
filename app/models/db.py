@@ -6,11 +6,11 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 Session = sessionmaker()
 DATABASE_URI ='postgresql://angel:postgres@db/coding_challenge'
-engine = create_engine(DATABASE_URI, echo=True)
+engine = create_engine(DATABASE_URI, echo=False)
 #db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 Session.configure(bind=engine)
 
-session = Session(autocommit=False )
+session = Session(autocommit=False)
 
 Base = declarative_base()
 

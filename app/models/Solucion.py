@@ -1,11 +1,10 @@
-
-
-import json
 from app.models.models import NReynas
 from app.models.db import session
+import json
+
 class Backtracking:
 
-    def __init__(self, n, r=[]):
+    def __init__(self, n=0, r=[]):
         """
 
         :param n: integer Cantidad de reynas
@@ -167,6 +166,14 @@ class Backtracking:
             res['msg'] = 'Registro eliminado'
 
         return res
+
+    def limpiar(self):
+        """
+        Los atributos son inicializados al valor por default
+        :return:void
+        """
+        self.N = 0
+        self.R = []
 
     def print_solucion(self):
         """
