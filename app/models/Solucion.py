@@ -70,7 +70,7 @@ class Backtracking:
         #Iteramos los renglones de cada columna
         for renglon in range(0, self.N):
             #para este renglon es una posicion valida?
-            if self.validarRenglon(reynas, columna, renglon):
+            if self.validar_renglon(reynas, columna, renglon):
                 #Colocamos la reyna en la columna y renglon
                 reynas[columna] = renglon
 
@@ -84,7 +84,7 @@ class Backtracking:
             elif renglon == self.N-1 and reynas[columna] == '-':
                 return
 
-    def validarRenglon(self, reynas, columna, renglon):
+    def validar_renglon(self, reynas, columna, renglon):
         """
         Validamos que dada la posicion  columna y renglon no existe reyna que sea atacada.
         Regresa:
@@ -124,7 +124,7 @@ class Backtracking:
         return True
 
 
-    def insertarSolucion(self):
+    def insertar_solucion(self):
         """
             Inserta la solucion previamente computada
         :return: void
@@ -133,13 +133,16 @@ class Backtracking:
         n_reyna = NReynas(N=self.N, Soluciones=json.dumps(self.R))
         session.add(n_reyna)
 
+        session.commit()
+
     @staticmethod
-    def obtenerSolucion(cantidad:int):
+    def obtener_solucion(cantidad:int):
         """
         Metodo encargado de obtener las soluciones de la base de datos dependiente de la 'cantidad' de reynas
         :param cantidad: Reynas a considerar
         :return:dict
         """
+
         soluciones = session.query(NReynas).filter_by(N=cantidad).first()
         if soluciones is None:
             msg = 'No existe registro previo para ('+str(cantidad)+'). '
@@ -149,11 +152,28 @@ class Backtracking:
 
         return out
 
+    @staticmethod
+    def eliminar_solucion_anterior(N:int):
+        """
+        Elimina solucion existente en la base de datos
+        :param N:
+        :return: dict
+        """
+        res = {'msg': 'Nada que hacer', 'code': 200}
+        resgistro = session.query(NReynas).filter_by(N=N).first()
+        if resgistro is not None:
+            session.delete(resgistro)
+            session.commit()
+            res['msg'] = 'Registro eliminado'
+
+        return res
+
     def print_solucion(self):
         """
          Imprime la solucion al problema dada una 'cantidad' de reynas en consola
 
          """
+        #todo realizar la logica para imprimir las posiciones en el tablero
         out = {"cantidad": self.N, "solucion": self.R}
 
         return out

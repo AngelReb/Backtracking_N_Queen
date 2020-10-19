@@ -11,7 +11,7 @@
 #Pasos 
 1-check. Solucion al problema de las N-Queens
 
-2- TODO
+2- Check
 
 3- TODO
 

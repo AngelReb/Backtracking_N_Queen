@@ -18,24 +18,36 @@ def index():
     return "index file :)"
 
 
-@app.route('/solucion', methods=['GET'])
-@app.route('/solucion/<int:cantidad>', methods=['GET'])
+@app.route('/resolver', methods=['GET'])
+@app.route('/resolver/<int:cantidad>', methods=['GET'])
 def solucion(cantidad=0):
+    #Creamos instancia de la clase encargada de la logica
+    back_t = Backtracking(cantidad)
 
-    sr = Backtracking(cantidad)
+    #Eliminamos registro previo
+    res = Backtracking.eliminar_solucion_anterior(cantidad)
 
-    solucion = sr.resolver()
-    sr.insertarSolucion()
+    #Obtenemos la solucion al tablero NxN
+    solucion = back_t.resolver()
 
-    #print(solucion)
-    session.commit()
+    #Se inserta la solucion
+    back_t.insertar_solucion()
+
+    #Regresamos respuesta
     return jsonify(solucion)
 
-@app.route('/obtener/', methods=['GET'])
-@app.route('/obtener/<int:cantidad>', methods=['GET'])
+@app.route('/solucion_guardada/', methods=['GET'])
+@app.route('/solucion_guardada/<int:cantidad>', methods=['GET'])
 def obtener(cantidad=0):
-    res = Backtracking.obtenerSolucion(cantidad)
+    res = Backtracking.obtener_solucion(cantidad)
     return jsonify(res)
+
+@app.route('/delete/', methods=['GET'])
+@app.route('/delete/<int:cantidad>', methods=['GET'])
+def eliminar(cantidad=0):
+    res = Backtracking.eliminar_solucion_anterior(cantidad)
+    return jsonify(res)
+
 
 @app.errorhandler(404)
 def page_not_found(error):
