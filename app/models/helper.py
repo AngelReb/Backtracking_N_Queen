@@ -29,7 +29,7 @@ def obtener_solucion(cantidad:int):
         msg = 'No existe registro previo para ('+str(cantidad)+'). '
         msg += 'Consulte http://127.0.0.1:500/resolver/'+str(cantidad)
         return {'msg': msg}
-    out = {"N": soluciones.N, "cantSolucion": len(soluciones.N_soluciones), "soluciones": soluciones.Soluciones}
+    out = {"N": soluciones.N, "cantSolucion": soluciones.N_soluciones, "soluciones": soluciones.Soluciones}
 
     return out
 
