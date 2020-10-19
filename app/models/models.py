@@ -1,7 +1,7 @@
 #http://zetcode.com/db/sqlalchemy/
 #http://zetcode.com/db/sqlalchemy/orm/
 #https://docs.sqlalchemy.org/en/13/orm/tutorial.html
-from app.models.db import Base, Session, engine, session
+from app.models.db import Base, engine
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String, JSON
@@ -18,6 +18,7 @@ class NReynas(Base):
     Id = Column(Integer, Sequence('id'), primary_key=True)
     N = Column(Integer, default=0)
     Soluciones = Column(JSON, default={})
+    N_soluciones = Column(Integer, default=0)
 
 
 def create_db():

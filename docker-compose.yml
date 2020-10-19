@@ -12,11 +12,10 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    #networks:
-    #  app_network:
-    #    - ipv4_address: 172.16.1.1
   web:
     build: .
+    entrypoint: ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+    #command: pytest -q nreynas_test.py
     container_name: FLASK_N_REYNAS
     env_file:
       - web.env
@@ -26,16 +25,6 @@ services:
       - "5000:5000"
     depends_on:
       - db
-    #networks:
-    #  app_network:
-    #    - ipv4_address: 172.16.1.2
 
-
-
-#networks:
-#  app_network:
-#    ipam:
-#      config:
-#        - subnet: 172.16.1.0/16
 volumes:
   db-data:

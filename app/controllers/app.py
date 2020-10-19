@@ -4,9 +4,9 @@ from flask import escape
 from flask import request
 from flask import jsonify
 
-from app.models.db import DATABASE_URI
-from app.models.models import Base, engine, session, NReynas, create_db
-from app.models.Solucion import Backtracking
+from app.models.models import Base, engine, create_db
+from app.models.Solucion import insertar_solucion, obtener_solucion, eliminar_solucion_anterior
+from app.backtracking import Backtracking
 
 app = Flask(__name__)
 
@@ -25,13 +25,13 @@ def solucion(cantidad=0):
     back_t = Backtracking(cantidad)
 
     #Eliminamos registro previo
-    res = Backtracking.eliminar_solucion_anterior(cantidad)
+    res = eliminar_solucion_anterior(cantidad)
 
     #Obtenemos la solucion al tablero NxN
     solucion = back_t.resolver()
 
     #Se inserta la solucion
-    back_t.insertar_solucion()
+    insertar_solucion(back_t)
 
     #Regresamos respuesta
     return jsonify(solucion)
@@ -39,13 +39,13 @@ def solucion(cantidad=0):
 @app.route('/solucion_guardada/', methods=['GET'])
 @app.route('/solucion_guardada/<int:cantidad>', methods=['GET'])
 def obtener(cantidad=0):
-    res = Backtracking.obtener_solucion(cantidad)
+    res = obtener_solucion(cantidad)
     return jsonify(res)
 
 @app.route('/delete/', methods=['GET'])
 @app.route('/delete/<int:cantidad>', methods=['GET'])
 def eliminar(cantidad=0):
-    res = Backtracking.eliminar_solucion_anterior(cantidad)
+    res = eliminar_solucion_anterior(cantidad)
     return jsonify(res)
 
 

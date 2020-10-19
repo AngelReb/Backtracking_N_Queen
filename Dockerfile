@@ -20,4 +20,4 @@ COPY /app ./
 #Definimos nuestro servicio
 ENV FLASK_APP=/app/controllers/app.py
 
-ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+RUN py.test
