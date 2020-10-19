@@ -1,5 +1,9 @@
-#http://zetcode.com/db/sqlalchemy/
-#https://docs.sqlalchemy.org/en/13/orm/tutorial.html
+"""
+    Documentacion oficial de SQLAlchemy y link oficial de ejemplos
+    #https://docs.sqlalchemy.org/en/13/orm/tutorial.html
+    #http://zetcode.com/db/sqlalchemy/
+
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session

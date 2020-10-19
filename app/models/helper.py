@@ -1,3 +1,6 @@
+"""
+    Metodos de utileria para insertar, consultar y eliminar  en la tabla NReynas
+"""
 from app.models.models import NReynas
 from app.models.db import session
 import json

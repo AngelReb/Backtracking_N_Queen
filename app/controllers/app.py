@@ -1,3 +1,7 @@
+"""
+    Doc oficial de Flask
+    https://flask.palletsprojects.com/en/1.1.x/
+"""
 from flask import Flask
 from flask import url_for
 from flask import escape
@@ -5,7 +9,7 @@ from flask import request
 from flask import jsonify
 
 from app.models.models import Base, engine, create_db
-from app.models.Solucion import insertar_solucion, obtener_solucion, eliminar_solucion_anterior
+from app.models.helper import insertar_solucion, obtener_solucion, eliminar_solucion_anterior
 from app.backtracking import Backtracking
 
 app = Flask(__name__)

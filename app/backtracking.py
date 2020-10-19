@@ -1,4 +1,7 @@
+"""
+    Clase encargada de la logica para resolver el problema del Backtracking
 
+"""
 class Backtracking:
 
     def __init__(self, n=0, r=[]):

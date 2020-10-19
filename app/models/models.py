@@ -1,3 +1,6 @@
+"""
+    Tabla para guardar las soluciones calculadas del problema planteado
+"""
 #http://zetcode.com/db/sqlalchemy/
 #http://zetcode.com/db/sqlalchemy/orm/
 #https://docs.sqlalchemy.org/en/13/orm/tutorial.html
@@ -7,10 +10,9 @@ from sqlalchemy import Integer
 from sqlalchemy import String, JSON
 from sqlalchemy import Sequence
 
-
 class NReynas(Base):
     """
-        Modelo SolucionNReynas, encargada de resolver, insertar y obtener la solucion de la db
+        Modelo NReynas, encargada de resolver, insertar y obtener la solucion de la db
 
     """
     __tablename__ = "NReynas"

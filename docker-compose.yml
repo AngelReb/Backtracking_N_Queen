@@ -7,7 +7,7 @@ services:
     image: postgres:latest
     container_name: DB_N_REYNAS
     env_file:
-      - db.env
+      - ./app/config/db.env
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
@@ -15,10 +15,9 @@ services:
   web:
     build: .
     entrypoint: ["python", "-m", "flask", "run", "--host=0.0.0.0"]
-    #command: pytest -q nreynas_test.py
     container_name: FLASK_N_REYNAS
     env_file:
-      - web.env
+      - ./app/config/web.env
     volumes:
       - .:/usr/src/app
     ports:
