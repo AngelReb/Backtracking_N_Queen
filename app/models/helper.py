@@ -12,7 +12,9 @@ def insertar_solucion(Bt):
     :return: void
 
     """
-    n_reyna = NReynas(N=Bt.n_reynas, Soluciones=json.dumps(Bt.solucion), N_soluciones=len(Bt.solucion))
+    n_reyna = NReynas(
+        N=Bt.n_reynas, Soluciones=json.dumps(Bt.solucion), N_soluciones=len(Bt.solucion)
+    )
     session.add(n_reyna)
 
     session.commit()

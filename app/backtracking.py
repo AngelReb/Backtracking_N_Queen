@@ -52,7 +52,11 @@ class Backtracking:
         r_posibles = [i for i in range(0, self.n_reynas)]
         self.backtracking(reynas_iniciales, columna_inicial, r_posibles)
 
-        out = {"N": self.n_reynas, "cantSolucion": len(self.solucion), "soluciones": self.solucion}
+        out = {
+            "N": self.n_reynas,
+            "cantSolucion": len(self.solucion),
+            "soluciones": self.solucion,
+        }
 
         return out
 
@@ -70,7 +74,6 @@ class Backtracking:
             return
 
         # Iteramos los renglones de cada columna
-        #for renglon in range(0, self.n_reynas):
         for renglon in r_posibles:
             # para este renglon es una posicion valida?
             if self.validar_renglon(reynas, columna, renglon):
