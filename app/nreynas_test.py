@@ -13,6 +13,6 @@ def test_NReynas():
     bt = Backtracking(1)
     for i in range(1, 11):
         bt.limpiar()
-        bt.N = i
-        r = bt.resolver()
-        assert r["cantSolucion"] == SOLUCIONES[i - 1]
+        bt.n_reynas = i
+        resultado = bt.resolver()
+        assert resultado["cantSolucion"] == SOLUCIONES[i - 1]

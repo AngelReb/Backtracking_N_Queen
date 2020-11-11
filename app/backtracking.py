@@ -5,15 +5,15 @@
 
 
 class Backtracking:
-    def __init__(self, n=0, r=[]):
+    def __init__(self, n_inicial=0, solucion=[]):
         """
 
         :param n: integer Cantidad de reynas
         :param r: list  Lista donde se guardaran las soluciones, cada solucion es una lista con posicion de las reynas
         """
 
-        self.N = n
-        self.R = []
+        self.n_reynas = n_inicial
+        self.solucion = solucion
 
     def resolver(self):
         """
@@ -46,42 +46,42 @@ class Backtracking:
         :return: dict \n
         """
         # Creamos un arreglo donde '-' especifica que no hay ninguna reyna colocada
-        reynas_iniciales = ["-"] * self.N
+        reynas_iniciales = ["-"] * self.n_reynas
         columna_inicial = 0
         self.backtracking(reynas_iniciales, columna_inicial)
 
-        out = {"N": self.N, "cantSolucion": len(self.R), "soluciones": self.R}
+        out = {"N": self.n_reynas, "cantSolucion": len(self.solucion), "soluciones": self.solucion}
 
         return out
 
     def backtracking(self, reynas, columna):
         """
-        Metodo recursivo que resuelve el problema de las N-reynas.
+        Metodo recursivo que resuelve el problema de las n-reynas.
         Se intentara colocar una reyna para la columna actual
 
-        :param reynas: lista de reynas por cada solucion. Lista de 'self.N' elementos < 0 o de caracteres
+        :param reynas: lista de reynas por cada solucion. Lista de 'self.n_reynas' elementos < 0 o de caracteres
         :param columna: columna actual
         :return: void
         """
         # Condicion de termino, superamos la cantidad de columnas para el tablero NxN
-        if columna == self.N:
+        if columna == self.n_reynas:
             return
 
         # Iteramos los renglones de cada columna
-        for renglon in range(0, self.N):
+        for renglon in range(0, self.n_reynas):
             # para este renglon es una posicion valida?
             if self.validar_renglon(reynas, columna, renglon):
                 # Colocamos la reyna en la columna y renglon
                 reynas[columna] = renglon
 
-                if columna == self.N - 1:
+                if columna == self.n_reynas - 1:
                     # Se llego a una ultima columna donde la reyna es valida colocar, guardamos solucion
-                    self.R.append(reynas)
+                    self.solucion.append(reynas)
                 else:
                     # Aun faltan columnas por recorrer
                     self.backtracking(reynas.copy(), columna + 1)
             # Sino hay renglon valido para la reyna actual se descarta solucion
-            elif renglon == self.N - 1 and reynas[columna] == "-":
+            elif renglon == self.n_reynas - 1 and reynas[columna] == "-":
                 return
 
     def validar_renglon(self, reynas, columna, renglon):
@@ -128,8 +128,8 @@ class Backtracking:
         Los atributos son inicializados al valor por default
         :return:void
         """
-        self.N = 0
-        self.R = []
+        self.n_reynas = 0
+        self.solucion = []
 
     def print_solucion(self):
         """
@@ -137,6 +137,6 @@ class Backtracking:
 
         """
         # todo realizar la logica para imprimir las posiciones en el tablero
-        out = {"cantidad": self.N, "solucion": self.R}
+        out = {"cantidad": self.n_reynas, "solucion": self.solucion}
 
         return out
