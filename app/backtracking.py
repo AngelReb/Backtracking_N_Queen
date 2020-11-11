@@ -2,8 +2,9 @@
     Clase encargada de la logica para resolver el problema del Backtracking
 
 """
-class Backtracking:
 
+
+class Backtracking:
     def __init__(self, n=0, r=[]):
         """
 
@@ -44,12 +45,12 @@ class Backtracking:
             3   [ - - Q - ]
         :return: dict \n
         """
-        #Creamos un arreglo donde '-' especifica que no hay ninguna reyna colocada
-        reynas_iniciales = ['-'] * self.N
+        # Creamos un arreglo donde '-' especifica que no hay ninguna reyna colocada
+        reynas_iniciales = ["-"] * self.N
         columna_inicial = 0
         self.backtracking(reynas_iniciales, columna_inicial)
 
-        out = {"N": self.N, "cantSolucion": len(self.R), "soluciones":  self.R}
+        out = {"N": self.N, "cantSolucion": len(self.R), "soluciones": self.R}
 
         return out
 
@@ -62,25 +63,25 @@ class Backtracking:
         :param columna: columna actual
         :return: void
         """
-        #Condicion de termino, superamos la cantidad de columnas para el tablero NxN
+        # Condicion de termino, superamos la cantidad de columnas para el tablero NxN
         if columna == self.N:
-           return
+            return
 
-        #Iteramos los renglones de cada columna
+        # Iteramos los renglones de cada columna
         for renglon in range(0, self.N):
-            #para este renglon es una posicion valida?
+            # para este renglon es una posicion valida?
             if self.validar_renglon(reynas, columna, renglon):
-                #Colocamos la reyna en la columna y renglon
+                # Colocamos la reyna en la columna y renglon
                 reynas[columna] = renglon
 
-                if columna == self.N-1:
-                    #Se llego a una ultima columna donde la reyna es valida colocar, guardamos solucion
+                if columna == self.N - 1:
+                    # Se llego a una ultima columna donde la reyna es valida colocar, guardamos solucion
                     self.R.append(reynas)
                 else:
-                    #Aun faltan columnas por recorrer
-                    self.backtracking(reynas.copy(), columna+1)
-            #Sino hay renglon valido para la reyna actual se descarta solucion
-            elif renglon == self.N-1 and reynas[columna] == '-':
+                    # Aun faltan columnas por recorrer
+                    self.backtracking(reynas.copy(), columna + 1)
+            # Sino hay renglon valido para la reyna actual se descarta solucion
+            elif renglon == self.N - 1 and reynas[columna] == "-":
                 return
 
     def validar_renglon(self, reynas, columna, renglon):
@@ -96,30 +97,30 @@ class Backtracking:
         :return: bool True o False dependiendo si es valido colocar reyna
         """
         if renglon in reynas:
-            #Ya existe reyna en el mismo renglon
+            # Ya existe reyna en el mismo renglon
             return False
 
         for col in range(0, columna):
-            #Obtenemos el actual renglon y columna de la reyna que estamos iterando
+            # Obtenemos el actual renglon y columna de la reyna que estamos iterando
             renglon_reyna_ite = reynas[col]
             columna_reyna_ite = col
 
-            #Valor de la casilla para ambas diagonales de la reyna iterada
+            # Valor de la casilla para ambas diagonales de la reyna iterada
             casilla_reyna_ite_ds = renglon_reyna_ite + columna_reyna_ite
             casilla_reyna_ite_di = renglon_reyna_ite - columna_reyna_ite
 
-            #Valor de la casilla para la reyna que estamos intentando colocar
+            # Valor de la casilla para la reyna que estamos intentando colocar
             diagonal_superior = renglon + columna
             diagonal_inferior = renglon - columna
 
-            #Verificamos si existe en la diagonal superior: RENGLON+COL
+            # Verificamos si existe en la diagonal superior: RENGLON+COL
             if casilla_reyna_ite_ds == diagonal_superior:
                 return False
 
-            #Verificamos si existe en la diagonal inferior: RENGLON-COL
+            # Verificamos si existe en la diagonal inferior: RENGLON-COL
             if casilla_reyna_ite_di == diagonal_inferior:
                 return False
-        #Si ninguna reyna ya colocada es atacada por la nueva
+        # Si ninguna reyna ya colocada es atacada por la nueva
         return True
 
     def limpiar(self):
@@ -132,11 +133,10 @@ class Backtracking:
 
     def print_solucion(self):
         """
-         Imprime la solucion al problema dada una 'cantidad' de reynas en consola
+        Imprime la solucion al problema dada una 'cantidad' de reynas en consola
 
-         """
-        #todo realizar la logica para imprimir las posiciones en el tablero
+        """
+        # todo realizar la logica para imprimir las posiciones en el tablero
         out = {"cantidad": self.N, "solucion": self.R}
 
         return out
-
