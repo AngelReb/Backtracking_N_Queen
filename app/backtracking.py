@@ -48,13 +48,15 @@ class Backtracking:
         # Creamos un arreglo donde '-' especifica que no hay ninguna reyna colocada
         reynas_iniciales = ["-"] * self.n_reynas
         columna_inicial = 0
-        self.backtracking(reynas_iniciales, columna_inicial)
+        self.solucion = []
+        r_posibles = [i for i in range(0, self.n_reynas)]
+        self.backtracking(reynas_iniciales, columna_inicial, r_posibles)
 
         out = {"N": self.n_reynas, "cantSolucion": len(self.solucion), "soluciones": self.solucion}
 
         return out
 
-    def backtracking(self, reynas, columna):
+    def backtracking(self, reynas, columna, r_posibles):
         """
         Metodo recursivo que resuelve el problema de las n-reynas.
         Se intentara colocar una reyna para la columna actual
@@ -68,7 +70,8 @@ class Backtracking:
             return
 
         # Iteramos los renglones de cada columna
-        for renglon in range(0, self.n_reynas):
+        #for renglon in range(0, self.n_reynas):
+        for renglon in r_posibles:
             # para este renglon es una posicion valida?
             if self.validar_renglon(reynas, columna, renglon):
                 # Colocamos la reyna en la columna y renglon
@@ -77,9 +80,11 @@ class Backtracking:
                 if columna == self.n_reynas - 1:
                     # Se llego a una ultima columna donde la reyna es valida colocar, guardamos solucion
                     self.solucion.append(reynas)
+
                 else:
                     # Aun faltan columnas por recorrer
-                    self.backtracking(reynas.copy(), columna + 1)
+                    r_posibles_copia = [x for x in r_posibles if not renglon == x]
+                    self.backtracking(reynas.copy(), columna + 1, r_posibles_copia)
             # Sino hay renglon valido para la reyna actual se descarta solucion
             elif renglon == self.n_reynas - 1 and reynas[columna] == "-":
                 return
